@@ -5,17 +5,13 @@ import { useState } from "react";
 import { Drawer } from "@mui/material";
 import { Button } from "@mui/material";
 import Banner from "@/components/Banner/Banner";
-import Book from "@/components/Book/Book";
+import Session from "@/components/Session/Session";
 
 // available books
-const books = [
+const departments = [
   {
     name: "Computer Science",
     code: "CS",
-  },
-  {
-    name: "Information Technology",
-    code: "IT",
   },
   {
     name: "Computer Science and Engineering",
@@ -24,10 +20,10 @@ const books = [
 ];
 
 // drawer options
-function DrawerOptions({ toggleDrawer, setCurrentBook }) {
+function DrawerOptions({ toggleDrawer, setDepartment }) {
   // drawer button handler
   const handleClick = (code) => {
-    setCurrentBook(code);
+    setDepartment(code);
     toggleDrawer();
   };
 
@@ -38,18 +34,18 @@ function DrawerOptions({ toggleDrawer, setCurrentBook }) {
       </div>
 
       <div className="drawerOptions__options my-10">
-        {books.map((book) => {
+        {departments.map((department) => {
           return (
             <div
-              key={book.code}
-              className={`drawerOptions__options__${book.code} my-2 hover:bg-blue-300 px-5 py-2`}
+              key={department.code}
+              className={`drawerOptions__options__${department.code} my-2 hover:bg-blue-300 px-5 py-2`}
             >
               <button
                 onClick={() => {
-                  handleClick(book.code);
+                  handleClick(department.code);
                 }}
               >
-                {book.name}
+                {department.name}
               </button>
             </div>
           );
@@ -63,7 +59,7 @@ function DrawerOptions({ toggleDrawer, setCurrentBook }) {
 export default function Yearbook() {
   // states
   const [open, setOpen] = useState(false);
-  const [currentBook, setCurrentBook] = useState(books[0].code);
+  const [department, setDepartment] = useState(departments[0].code);
 
   // drawer handler
   const toggleDrawer = () => {
@@ -77,12 +73,13 @@ export default function Yearbook() {
         <Drawer anchor="left" open={open} onClose={toggleDrawer}>
           <DrawerOptions
             toggleDrawer={toggleDrawer}
-            setCurrentBook={setCurrentBook}
+            setDepartment={setDepartment}
           />
         </Drawer>
       </div>
-      <div className="yearbook__books">
-        <Book book={currentBook} />
+
+      <div className="yearbook__session">
+        <Session department={department} />
       </div>
     </div>
   );
