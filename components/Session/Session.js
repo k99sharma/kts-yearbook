@@ -2,14 +2,7 @@
 import Link from "next/link";
 
 // available sessions
-const sessions = [
-  {
-    year: "2019",
-  },
-  {
-    year: "2020",
-  },
-];
+import { sessions } from "@/utils";
 
 // session component
 export default function Session({ department }) {
@@ -21,11 +14,11 @@ export default function Session({ department }) {
         {sessions.map((session) => {
           return (
             <div
-              key={session.year}
-              className={`session__blocks__${session.year} p-3 bg-green-200 mx-2`}
+              key={session}
+              className={`session__blocks__${session} p-3 bg-green-200 mx-2`}
             >
-              <Link href={`sessions/${department}/${session.year}`}>
-                <button>{session.year}</button>
+              <Link href={`sessions/${department}/${session}`}>
+                <button>{session}</button>
               </Link>
             </div>
           );

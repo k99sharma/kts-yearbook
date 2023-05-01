@@ -7,17 +7,8 @@ import { Button } from "@mui/material";
 import Banner from "@/components/Banner/Banner";
 import Session from "@/components/Session/Session";
 
-// available books
-const departments = [
-  {
-    name: "Computer Science",
-    code: "CS",
-  },
-  {
-    name: "Computer Science and Engineering",
-    code: "CSE",
-  },
-];
+// available departments
+import { departments } from "@/utils";
 
 // drawer options
 function DrawerOptions({ toggleDrawer, setDepartment }) {

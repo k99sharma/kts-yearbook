@@ -13,17 +13,22 @@ import { useRouter } from "next/router";
 
 // static paths
 export async function getStaticPaths() {
-  const departments = ["CS", "CSE"]; // departments
-  const years = ["2019", "2020", "2021"]; // year
+  try {
+    const departments = ["CS", "CSE"]; // departments
+    const years = ["2019", "2020", "2021"]; // year
 
-  // all possible paths
-  const paths = departments.flatMap((department) => {
-    return years.map((year) => {
-      return { params: { session: [department, year] } };
+    // all possible paths
+    const paths = departments.flatMap((department) => {
+      return years.map((year) => {
+        return { params: { session: [department, year] } };
+      });
     });
-  });
 
-  return { paths, fallback: true };
+    return { paths, fallback: true };
+  } catch (err) {
+    console.log(err);
+    return { paths: null, fallback: true };
+  }
 }
 
 // static props
